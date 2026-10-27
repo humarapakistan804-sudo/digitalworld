@@ -1,7 +1,7 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
 <title>Digital World</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@500&family=DM+Mono:wght@400;500&family=Orbitron:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Noto+Nastaliq+Urdu:wght@500&amp;family=DM+Mono:wght@400;500&amp;family=Orbitron:wght@700;900&amp;display=swap">
 <style>
 /* Layout: sticky bar, short hero with orbit globe, 7 colour-coded category tiles, filterable library grid, owner-only upload panel. */
 :root{
@@ -190,13 +190,21 @@ footer .fb p{color:var(--muted);max-width:36ch}
 .steps{margin:0;padding-left:1.2em;display:grid;gap:8px;color:var(--muted)}
 .steps b{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.hero h1 em,.wm .w,.stage .heroLogo{animation:none}.hero h1 em{color:var(--jade);background:none}.card:hover,.cat:hover,.pillar:hover{transform:none}}
+.lbl{font-weight:600;font-size:.9rem}
+.sr{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.ovr{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0;border:0;padding:0;margin:0}
+.pick{position:relative;display:flex;align-items:center;gap:12px;border:1.5px dashed var(--line);border-radius:12px;padding:10px 12px;min-height:56px;cursor:pointer;background:var(--bg)}
+.pick:hover,.sr:focus-visible+small,.pick:focus-within{border-color:var(--jade)}
+.pbtn{flex:none;background:var(--jade);color:var(--jade-ink);font-weight:600;border-radius:8px;padding:9px 14px}
+.pname{min-width:0;overflow-wrap:anywhere;color:var(--muted);font-size:.92rem}
+.stickybar{position:sticky;bottom:0;background:var(--surface);padding:10px 0 2px;display:grid;gap:8px;border-top:1px solid var(--line)}
 </style>
 
-<div id="prog"></div>
-<div id="app"></div>
-<div id="overlay" role="dialog" aria-modal="true"></div>
-<div id="toast" role="status"></div>
-<script type="application/json" id="dw-state">{"settings":{"whatsapp":"923233885543"},"items":[]}</script>
+<div id="prog" style="transform: scaleX(0.693069);"></div>
+<div id="app" class=""></div>
+<div id="overlay" role="dialog" aria-modal="true" class=""></div>
+<div id="toast" role="status" class=""></div>
+<script type="application/json" id="dw-state">{"settings":{"whatsapp":"923233885543"},"items":[{"id":"imvr60xz1btef","title":"Man_presenting_futuristic_SUV_re…_d254f1b8_2K","cat":"wallpapers","price":0,"desc":"I am standing confidently beside my futuristic matte-black armored off-road SUV, RH X-002, on a cinematic outdoor location at dusk. The vehicle has exactly FOUR wheels, aggressive futuristic bodywork, glowing neon-green LED headlights, green wheel rims, and a powerful armored app","link":"","ts":1793134571006,"assetIds":["d8391ffb253965f8bd5657b6000a4d85"],"url":"/_blob/d8391ffb253965f8bd5657b6000a4d85","kind":"image"},{"id":"imvr60z5wtkzg","title":"Man_presenting_automotive_review…_eace963d_2K","cat":"wallpapers","price":0,"desc":"I am standing confidently beside my futuristic matte-black armored off-road SUV, RH X-002, on a cinematic outdoor location at dusk. The vehicle has exactly FOUR wheels, aggressive futuristic bodywork, glowing neon-green LED headlights, green wheel rims, and a powerful armored app","link":"","ts":1793134572549,"assetIds":["e3feef087b63ea5f3dbcd2274318784c"],"url":"/_blob/e3feef087b63ea5f3dbcd2274318784c","kind":"image"},{"id":"imvr610ed3r4w","title":"Presenter_reviewing_futuristic_SUV_5f8e5027_2K","cat":"wallpapers","price":0,"desc":"I am standing confidently beside my futuristic matte-black armored off-road SUV, RH X-002, on a cinematic outdoor location at dusk. The vehicle has exactly FOUR wheels, aggressive futuristic bodywork, glowing neon-green LED headlights, green wheel rims, and a powerful armored app","link":"","ts":1793134574151,"assetIds":["7116748fa5a2641b248d7d3bf3323a40"],"url":"/_blob/7116748fa5a2641b248d7d3bf3323a40","kind":"image"}]}</script>
 <script>
 (function(){
 var CATS=[
@@ -207,7 +215,8 @@ var CATS=[
  {id:"dramas",en:"Dramas & Short Movies",ur:"ڈرامے اور مختصر فلمیں",h:10,kind:"video"},
  {id:"funny",en:"Funny & Entertainment",ur:"مزاح اور تفریح",h:55,kind:"video"},
  {id:"poetry",en:"Motivational Urdu Poetry & Songs",ur:"حوصلہ افزا اردو شاعری اور گیت",h:150,kind:"video"},
- {id:"wallpapers",en:"Logos & Wallpapers",ur:"لوگوز اور وال پیپرز",h:90,kind:"image"}
+ {id:"wallpapers",en:"Logos & Wallpapers",ur:"لوگوز اور وال پیپرز",h:90,kind:"image"},
+ {id:"products",en:"Products",ur:"پروڈکٹس",h:225,kind:"image"}
 ];
 function fmtNum(s){var d=String(s||"").replace(/\D/g,"");if(!d)return"";return d.indexOf("92")===0&&d.length>=12?"+92 "+d.slice(2,5)+" "+d.slice(5):"+"+d}
 function waLink(msg){var d=String(S.settings.whatsapp||"").replace(/\D/g,"");return d?"https://wa.me/"+d+"?text="+encodeURIComponent(msg):""}
@@ -357,8 +366,8 @@ function render(){
   '<p class="intro">Digital World is a creative studio and online content store. Everything you see here is created by our own team: short videos and reels, documentaries and stories, songs, dramas and short movies, comedy, Urdu poetry, and our logos and wallpapers.</p>'+
   '<div class="pillars"><div class="pillar"><span class="mono">Vision</span><h3>Our vision</h3><p>To become a trusted home for original Urdu and English digital content that people enjoy every day and are proud to own.</p></div>'+
   '<div class="pillar"><span class="mono">Mission</span><h3>Our mission</h3><p>To create fresh, high quality videos, songs, stories, logos and wallpapers, and to make them easy to watch, easy to buy and easy to share.</p></div>'+
-  '<div class="pillar"><span class="mono">What we create</span><h3>Made in-house</h3><ul><li>Shorts and reels</li><li>Documentaries and stories</li><li>Video songs and audio songs</li><li>Dramas and short movies</li><li>Funny and entertainment</li><li>Motivational Urdu poetry and songs</li><li>Logos and wallpapers</li></ul></div></div></section>';
- h+='<section id="services"><div class="sec-head"><h2>Our Services</h2><span class="mono">'+total+' item'+(total===1?"":"s")+' online</span></div><p class="intro" style="margin-bottom:16px;color:var(--muted);max-width:68ch">Eight kinds of original content. Pick a service to see our work in that category.</p><div class="cats">';
+  '<div class="pillar"><span class="mono">What we create</span><h3>Made in-house</h3><ul><li>Shorts and reels</li><li>Documentaries and stories</li><li>Video songs and audio songs</li><li>Dramas and short movies</li><li>Funny and entertainment</li><li>Motivational Urdu poetry and songs</li><li>Logos and wallpapers</li><li>Products</li></ul></div></div></section>';
+ h+='<section id="services"><div class="sec-head"><h2>Our Services</h2><span class="mono">'+total+' item'+(total===1?"":"s")+' online</span></div><p class="intro" style="margin-bottom:16px;color:var(--muted);max-width:68ch">Original content and our own products. Pick a service to see our work in that category.</p><div class="cats">';
  CATS.forEach(function(c){h+='<button class="cat" style="--h:'+c.h+'" data-act="cat" data-id="'+c.id+'" aria-pressed="'+(filter===c.id)+'"><span class="n">'+(n[c.id]||0)+' item'+((n[c.id]||0)===1?"":"s")+'</span><b>'+esc(c.en)+'</b><span class="ur" lang="ur">'+c.ur+'</span></button>'});
  h+='</div></section>';
  h+='<section id="work"><div class="sec-head"><h2>Our Work</h2></div><div class="chips" role="group" aria-label="Filter by category"><button class="chip" data-act="cat" data-id="all" aria-pressed="'+(filter==="all")+'">All</button>';
@@ -400,7 +409,7 @@ function openItem(id){
  else if(i.cover)body='<div class="player"><img src="'+esc(i.cover)+'" alt=""></div>';
  var act="";
  if(paid){
-  act+='<p class="note">'+(i.url?"This is a preview. ":"")+'Order the full file and it will be sent to you after payment.</p>';
+  act+=i.cat==="products"?'<p class="note">Order this product on WhatsApp and we will confirm the price and delivery with you.</p>':'<p class="note">'+(i.url?"This is a preview. ":"")+'Order the full file and it will be sent to you after payment.</p>';
   act+=ord?'<a class="btn primary" href="'+esc(ord)+'" target="_blank" rel="noopener">Buy for '+esc(priceOf(i))+' on WhatsApp</a>':'<p class="note">The seller has not added a contact number yet. Please check back soon.</p>';
  }
  if(link)act+='<a class="btn" href="'+esc(link)+'" target="_blank" rel="noopener">'+(paid?"Watch trailer":"Watch full video")+'</a>';
@@ -413,14 +422,14 @@ function adminPanel(){
  var items=S.items.slice().sort(function(a,b){return(b.ts||0)-(a.ts||0)});
  var opts=CATS.map(function(c){return'<option value="'+c.id+'">'+esc(c.en)+'</option>'}).join("");
  ov.innerHTML='<div class="panel"><div class="top"><h2>Manage content</h2><button class="btn icon" data-act="close" aria-label="Close">✕</button></div>'+
-  '<form class="form" id="addForm"><div class="field"><label for="f-title">Title</label><input id="f-title" required maxlength="120"></div>'+
+  '<form class="form" id="addForm" novalidate><div class="field"><label for="f-title">Title</label><input id="f-title" maxlength="120" placeholder="Leave empty to use the file name"></div>'+
   '<div class="two"><div class="field"><label for="f-cat">Category</label><select id="f-cat">'+opts+'</select></div>'+
   '<div class="field"><label for="f-price">Price in PKR</label><input id="f-price" type="number" min="0" step="1" value="0"><small>0 means free to watch.</small></div></div>'+
-  '<div class="field"><label for="f-file">Video, audio or image file</label><input id="f-file" type="file" accept="video/*,audio/*,image/*"><small>Up to 20 MB per file. Logos and wallpapers go in the Logos &amp; Wallpapers category. For a paid item, upload only a short preview or a small copy, and send the full file to the buyer yourself.</small></div>'+
-  '<div class="field"><label for="f-cover">Cover image (optional)</label><input id="f-cover" type="file" accept="image/*"></div>'+
+  '<div class="field"><span class="lbl">Video, audio or image file</span><div class="pick"><span class="pbtn">Choose file</span><span class="pname" id="f-file-name">No file chosen</span><input id="f-file" class="ovr" type="file" multiple accept="video/*,audio/*,image/*" aria-label="Choose file"></div><small>You can choose many wallpapers or logos at once, and each becomes its own item. Up to 20 MB per file. Large images are shrunk automatically. For a paid item, upload only a small copy and send the full file to the buyer yourself.</small></div>'+
+  '<div class="field"><span class="lbl">Cover image (optional)</span><div class="pick"><span class="pbtn">Choose image</span><span class="pname" id="f-cover-name">No file chosen</span><input id="f-cover" class="ovr" type="file" accept="image/*" aria-label="Choose cover image"></div></div>'+
   '<div class="field"><label for="f-link">Link to a longer video (optional)</label><input id="f-link" type="url" placeholder="https://"><small>Use this for files over 20 MB. It opens in a new tab.</small></div>'+
   '<div class="field"><label for="f-desc">Short description</label><textarea id="f-desc" maxlength="280"></textarea></div>'+
-  '<button class="btn primary" type="submit" id="f-go">Add to library</button></form>'+
+  '<div class="stickybar"><p class="note" id="f-msg" role="alert" hidden></p><button class="btn primary" type="submit" id="f-go">Add to library</button></div></form>'+
   '<h3>Order contact</h3><form class="form" id="setForm"><div class="field"><label for="s-wa">WhatsApp number with country code</label><input id="s-wa" inputmode="numeric" placeholder="923001234567" value="'+esc(S.settings.whatsapp||"")+'"><small>Buyers tap Buy and chat with you on this number.</small></div><button class="btn" type="submit">Save contact</button></form>'+
   '<h3>Your items ('+items.length+')</h3><div class="items">'+(items.length?items.map(function(i){return'<div class="irow"><span>'+esc(i.title)+' <span class="mono">'+esc(cat(i.cat).en)+'</span></span><button class="btn" data-act="del" data-id="'+esc(i.id)+'">Remove</button></div>'}).join(""):'<p style="color:var(--muted)">Nothing uploaded yet.</p>')+'</div></div>';
  ov.className="on";
@@ -442,6 +451,17 @@ async function guarded(fn){
   else toast("Could not save: "+((e&&e.message)||"please try again"));
  }
  busy=false;
+}
+function formMsg(t){var m=document.getElementById("f-msg");if(!m)return;m.textContent=t;m.hidden=!t;if(t&&m.scrollIntoView)m.scrollIntoView({block:"nearest"})}
+function kindOf(f){var t=f.type||"";return t.indexOf("audio")===0?"audio":(t.indexOf("image")===0?"image":"video")}
+async function shrinkImage(f){
+ if((f.type||"").indexOf("image/")!==0||f.size<=19*1048576)return f;
+ try{
+  var bmp=await createImageBitmap(f),sc=Math.min(1,3000/Math.max(bmp.width,bmp.height)),cv=document.createElement("canvas");
+  cv.width=Math.round(bmp.width*sc);cv.height=Math.round(bmp.height*sc);cv.getContext("2d").drawImage(bmp,0,0,cv.width,cv.height);
+  var blob=await new Promise(function(r){cv.toBlob(r,"image/jpeg",.9)});
+  return blob?new File([blob],f.name.replace(/\.[^.]+$/,"")+".jpg",{type:"image/jpeg"}):f;
+ }catch(e){return f}
 }
 function uid(){return"i"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 
@@ -468,18 +488,39 @@ document.addEventListener("submit",function(ev){
  ev.preventDefault();
  if(ev.target.id==="setForm"){guarded(async function(){S.settings.whatsapp=document.getElementById("s-wa").value.replace(/\D/g,"");toast("Saving...");await save()})}
  if(ev.target.id==="addForm"){guarded(async function(){
-   var title=document.getElementById("f-title").value.trim(),f=document.getElementById("f-file").files[0],cv=document.getElementById("f-cover").files[0],
-       link=safeUrl(document.getElementById("f-link").value),price=Math.max(0,Number(document.getElementById("f-price").value)||0);
-   if(!title)return;
-   if(!f&&!link&&!cv){toast("Add a file, a cover image or a link first.");return}
-   if(link===""&&document.getElementById("f-link").value.trim()){toast("The link must start with https://");return}
-   var btn=document.getElementById("f-go");btn.disabled=true;btn.textContent="Uploading...";
-   var it={id:uid(),title:title,cat:document.getElementById("f-cat").value,price:price,desc:document.getElementById("f-desc").value.trim(),link:link,ts:Date.now(),assetIds:[]};
+   var go=document.getElementById("f-go"),fi=document.getElementById("f-file"),files=Array.prototype.slice.call(fi.files||[]),cvf=document.getElementById("f-cover").files[0],
+       title=document.getElementById("f-title").value.trim(),linkRaw=document.getElementById("f-link").value.trim(),link=safeUrl(linkRaw),
+       price=Math.max(0,Number(document.getElementById("f-price").value)||0),catId=document.getElementById("f-cat").value,desc=document.getElementById("f-desc").value.trim(),made=[];
+   formMsg("");
+   if(linkRaw&&!link){formMsg("The link must start with https://");return}
+   if(!files.length&&!link&&!cvf){formMsg("Tap Choose file and pick your file first, or paste a link.");return}
+   if(!files.length&&!title){formMsg("Add a title for this item.");return}
+   go.disabled=true;
    try{
-    if(f){var r=await assets.upload(f);it.url=r.url;it.assetIds.push(r.id);it.kind=(f.type||"").indexOf("audio")===0?"audio":((f.type||"").indexOf("image")===0?"image":"video")}
-    if(cv){var r2=await assets.upload(cv);it.cover=r2.url;it.assetIds.push(r2.id)}
-   }catch(e){btn.disabled=false;btn.textContent="Add to library";throw e}
-   S.items.push(it);toast("Publishing...");await save()})}
+    var cover=null;
+    if(cvf&&files.length<=1){go.textContent="Uploading cover...";cover=await assets.upload(await shrinkImage(cvf))}
+    var list=files.length?files:[null];
+    for(var n=0;n<list.length;n++){
+     var f=list[n];go.textContent=list.length>1?"Uploading "+(n+1)+" of "+list.length+"...":"Uploading...";
+     var it={id:uid(),title:(list.length===1&&title)||(f?f.name.replace(/\.[^.]+$/,""):title),cat:catId,price:price,desc:desc,link:list.length>1?"":link,ts:Date.now()+n,assetIds:[]};
+     if(f){
+      f=await shrinkImage(f);
+      if(f.size>20*1048576)throw{message:f.name+" is "+(f.size/1048576).toFixed(1)+" MB. The limit is 20 MB. Use a smaller file, or paste a link to the full video instead."};
+      var r=await assets.upload(f);it.url=r.url;it.assetIds.push(r.id);it.kind=kindOf(f)}
+     if(cover&&list.length===1){it.cover=cover.url;it.assetIds.push(cover.id)}
+     S.items.push(it);made.push(it)}
+    go.textContent="Publishing...";await save();
+   }catch(e){
+    S.items=S.items.filter(function(x){return made.indexOf(x)<0});
+    formMsg(e&&e.code==="conflict"?"Someone else saved first. The page is reloading.":"Upload stopped: "+((e&&e.message)||"please try again."));
+   }
+   go.disabled=false;go.textContent="Add to library"})}
+});
+document.addEventListener("change",function(ev){
+ var t=ev.target;if(t.id!=="f-file"&&t.id!=="f-cover")return;
+ var fs=t.files||[],el=document.getElementById(t.id+"-name");if(!el)return;
+ el.textContent=!fs.length?"No file chosen":(fs.length>1?fs.length+" files selected":fs[0].name+" ("+(fs[0].size/1048576).toFixed(1)+" MB)");
+ formMsg("");
 });
 
 render();
@@ -495,4 +536,4 @@ render();
 })();
 </script>
 
-</body></html>
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span><span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span></body></html>
