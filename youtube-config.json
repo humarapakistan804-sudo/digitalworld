@@ -1,0 +1,22 @@
+{
+  "channel_id": "UC5AC7YQjIAKBDLXbY0NEQqg",
+  "channel_url": "https://youtube.com/@digitalworld3377",
+  "playlists": {
+    "shorts": "",
+    "docs": "",
+    "vsongs": "",
+    "asongs": "",
+    "dramas": "",
+    "funny": "",
+    "poetry": ""
+  },
+  "keywords": {
+    "dramas": ["drama", "short film", "short movie", "ڈرامہ", "فلم"],
+    "docs": ["documentary", "review", "ڈاکیومنٹری", "دستاویزی"],
+    "vsongs": ["video song", "official video", "music video", "ویڈیو"],
+    "asongs": ["mp3", "audio song", "آڈیو"],
+    "poetry": ["poetry", "shayari", "sufi", "kalam", "motivational", "شاعری", "کلام"],
+    "funny": ["funny", "comedy", "prank", "مزاح", "کامیڈی"]
+  },
+  "default_category": ""
+}
