@@ -333,8 +333,8 @@ window.addEventListener("beforeunload",function(e){if(dirty&&EDITLOCAL){e.preven
 
 function startStats(){
  var c=String(S.settings.goatcounter||"").replace(/[^a-z0-9-]/g,"");
- if(!c||!STATIC||EDITLOCAL||location.protocol==="file:")return;
- var sc=document.createElement("script");sc.async=true;sc.src="https://gc.zgo.at/count.js";sc.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(sc);
+ if(!c||!STATIC||location.protocol==="file:"&&!EDITLOCAL)return;
+ if(!EDITLOCAL){var sc=document.createElement("script");sc.async=true;sc.src="https://gc.zgo.at/count.js";sc.setAttribute("data-goatcounter","https://"+c+".goatcounter.com/count");document.head.appendChild(sc);return}
  setTimeout(function(){fetch("https://"+c+".goatcounter.com/counter/TOTAL.json").then(function(r){return r.ok?r.json():null}).then(function(d){if(d&&d.count){VISITS=String(d.count);render()}}).catch(function(){})},2500);
 }
 function loginPanel(msg){
@@ -536,7 +536,7 @@ function render(){
   '<div><h4>Quick links</h4><ul><li><a href="#top">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#services">Services</a></li><li><a href="#work">Our Work</a></li><li><a href="#contact">Contact</a></li><li><a href="'+YT_URL+'" target="_blank" rel="noopener">YouTube channel</a></li>'+(STATIC&&!EMBED&&!EDITLOCAL?(canEdit?'<li><button data-act="logout">Owner logout</button></li>':'<li><button data-act="login">Owner login</button></li>'):'')+'</ul></div>'+
   '<div><h4>Services</h4><ul>'+CATS.map(function(c){return'<li><button data-act="cat" data-id="'+c.id+'">'+esc(c.en)+'</button></li>'}).join("")+'</ul></div>'+
   '<div class="fb"><h4 style="margin:0">Order on WhatsApp</h4>'+(num?'<span class="num">'+esc(num)+'</span><p>Message us to buy any item or to ask about our work.</p><a class="btn primary" href="'+esc(waLink("Hi Digital World, I would like to know more."))+'" target="_blank" rel="noopener">Chat on WhatsApp</a>':'<p>Order contact will be added soon.</p>')+'</div></div>'+
-  '<div class="fbot"><span>© 2026 Digital World. All rights reserved.</span><span>All content on this site is created by Digital World.</span>'+(VISITS?'<span>Total visits: '+esc(VISITS)+'</span>':'')+'</div></footer></div>';
+  '<div class="fbot"><span>© 2026 Digital World. All rights reserved.</span><span>All content on this site is created by Digital World.</span>'+(EDITLOCAL&&VISITS?'<span>Total visits (only you see this): '+esc(VISITS)+'</span>':'')+'</div></footer></div>';
  var qEl=document.getElementById("q"),hadFocus=qEl&&document.activeElement===qEl;
  app.innerHTML=h;
  if(hadFocus){var q2=document.getElementById("q");q2.focus();q2.setSelectionRange(query.length,query.length)}
