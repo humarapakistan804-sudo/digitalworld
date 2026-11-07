@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://humarapakistan804-sudo.github.io/digitalworld/sitemap.xml
